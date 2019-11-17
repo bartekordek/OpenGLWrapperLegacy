@@ -5,6 +5,6 @@
 OGLWL::IOpenGLwrapperLegacy* OGLWL::createWrapper( SDL2W::ISDL2Wrapper* sdl2w )
 {
     CUL::Assert::simple( nullptr != sdl2w );
-    OGLWL::IOpenGLwrapperLegacy* result = nullptr;
+    auto result = new OpenGLWrapperLegacyConcrete( sdl2w );
     return result;
 }
