@@ -50,8 +50,6 @@ void assert( const bool statement, const String& message )
         message );
 }
 
-void setPerspectiveProjection( const Rect& viewPortRect, const double fovAngle = 90.0 );
-void resetTransformations();
 void frame();
 void drawTriangle( const Color& color );
 void drawQuad( const Color& color );
@@ -87,15 +85,6 @@ int main( int argc, char** argv )
     return 0;
 }
 
-void setPerspectiveProjection( const Rect& viewPortRect, const double fovAngle )
-{
-    GLfloat ratio = (GLfloat) ( viewPortRect.width * 1.0 / viewPortRect.height );
-    glMatrixMode( GL_PROJECTION );
-    glLoadIdentity();
-    glViewport( viewPortRect.x, viewPortRect.y, viewPortRect.width, viewPortRect.height );
-    gluPerspective( fovAngle, ratio, 0, 20 );
-}
-
 void frame()
 {
     renderScene();
@@ -111,23 +100,6 @@ void renderScene()
         drawTriangle( blue );
     glPopMatrix();
     angle += 0.1f;
-}
-
-void resetTransformations()
-{
-    glMatrixMode( GL_MODELVIEW );
-    glLoadIdentity();
-
-    Pos eye;
-    eye.z = 10.f;
-    Pos center;
-    Pos up;
-    up.y = 1.0f;
-
-    gluLookAt(
-        eye.x, eye.y, eye.z,
-        center.x, center.y, center.z,
-        up.x, up.y, up.z );
 }
 
 void drawTriangle( const Color& color )
