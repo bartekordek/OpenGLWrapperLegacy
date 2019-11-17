@@ -28,6 +28,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libopenglwrapperlegacyTestApp", "libopenglwrapperlegacyTestApp\libopenglwrapperlegacyTestApp.vcxproj", "{75FF01A3-E575-4661-B75B-3AA935B46F2F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8A83731D-8F5C-4AE8-8CCF-74B7B18609DB} = {8A83731D-8F5C-4AE8-8CCF-74B7B18609DB}
+		{D43D15FF-25E5-47DF-A66C-7F16B4D54971} = {D43D15FF-25E5-47DF-A66C-7F16B4D54971}
 	EndProjectSection
 EndProject
 Global

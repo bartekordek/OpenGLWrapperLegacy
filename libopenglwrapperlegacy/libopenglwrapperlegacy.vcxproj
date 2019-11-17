@@ -242,11 +242,13 @@ xcopy "$(ProjectDir)..\deps\freeglut\Build-Windows\$(Platform)\*.dll" "$(TargetD
     <ClInclude Include="src\IMPORT_glfw3.hpp" />
     <ClInclude Include="src\MatrixStack.hpp" />
     <ClInclude Include="src\OpenGLWrapperLegacyConcrete.hpp" />
+    <ClInclude Include="src\OpenGL_3_Utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IOpenGLwrapperLegacy.cpp" />
     <ClCompile Include="src\OpenGLWrapperLegacy.cpp" />
     <ClCompile Include="src\OpenGLWrapperLegacyConcrete.cpp" />
+    <ClCompile Include="src\OpenGL_3_Utils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
