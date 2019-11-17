@@ -50,9 +50,6 @@
     <ClInclude Include="src\IMPORT_glew.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\IMPORT_glfw3.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\OpenGLWrapperLegacyConcrete.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>

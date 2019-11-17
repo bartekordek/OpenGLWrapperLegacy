@@ -9,8 +9,6 @@
 #include "CUL/GenericUtils/SimpleAssert.hpp"
 #include "CUL/STL_IMPORTS/STD_functional.hpp"
 
-#include "IMPORT_glfw3.hpp"
-
 using SDLWrap = CUL::GUTILS::DumbPtr<SDL2W::ISDL2Wrapper>;
 using Color = CUL::Graphics::ColorS;
 using WinEventType = SDL2W::WindowEvent::Type;
