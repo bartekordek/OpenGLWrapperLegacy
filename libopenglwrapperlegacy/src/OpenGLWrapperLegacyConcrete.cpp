@@ -1,7 +1,9 @@
 #include "OpenGLWrapperLegacyConcrete.hpp"
 #include "OpenGL_3_Utils.hpp"
 #include "IMPORT_SDL_opengl.hpp"
+
 #include "CUL/STL_IMPORTS/STD_iostream.hpp"
+#include "CUL/ITimer.hpp"
 
 using namespace OGLWL;
 
@@ -24,12 +26,12 @@ OpenGLWrapperLegacyConcrete::OpenGLWrapperLegacyConcrete(
 {
 }
 
-void OpenGLWrapperLegacyConcrete::start()
+void OpenGLWrapperLegacyConcrete::beginRenderingLoop()
 {
     m_renderingLoopThread = std::thread( &OpenGLWrapperLegacyConcrete::mainLoop, this );
 }
 
-void OpenGLWrapperLegacyConcrete::signalStop()
+void OpenGLWrapperLegacyConcrete::endRenderingLoop()
 {
     m_runMainLoop = false;
     if( m_renderingLoopThread.joinable() )
@@ -47,10 +49,7 @@ void OpenGLWrapperLegacyConcrete::mainLoop()
     initialize();
     while( m_runMainLoop )
     {
-        if( m_clearEveryFrame ) clearFrame();
         renderFrame();
-        customFrameSteps();
-        if( m_updateBuffers ) updateBuffers();
     }
     cleanup();
 }
@@ -61,6 +60,16 @@ void OpenGLWrapperLegacyConcrete::initialize()
     auto versionString = UTILS::initContextVersion( 1, 4 );
     std::cout << "Version info: \n" << versionString.string();
     setProjection();
+}
+
+void OpenGLWrapperLegacyConcrete::renderFrame()
+{
+    if( m_clearEveryFrame ) clearFrame();
+    if( m_clearTransformations ) setProjection();
+    renderObjects();
+    customFrameSteps();
+    if( m_updateBuffers ) updateBuffers();
+    CUL::ITimer::sleepMicroSeconds( m_afterFrameSleepMicroSeconds );
 }
 
 void OpenGLWrapperLegacyConcrete::setProjection()
@@ -91,7 +100,12 @@ void OpenGLWrapperLegacyConcrete::clearFrame()
     glClear( GL_COLOR_BUFFER_BIT );
 }
 
-void OpenGLWrapperLegacyConcrete::renderFrame()
+void OpenGLWrapperLegacyConcrete::clearTransformations()
+{
+    UTILS::resetMatrixToIdentity( GL_MODELVIEW );
+}
+
+void OpenGLWrapperLegacyConcrete::renderObjects()
 {
 
 }

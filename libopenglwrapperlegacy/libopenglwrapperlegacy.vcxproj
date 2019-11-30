@@ -73,21 +73,25 @@
     <OutDir>$(ProjectDir)..\Build-Windows\$(Platform)_$(Configuration)\</OutDir>
     <IntDir>$(OutDir)intermediate\$(ProjectName)\$(Platform)_$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <CustomBuildBeforeTargets>Build</CustomBuildBeforeTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)..\Build-Windows\$(Platform)_$(Configuration)\</OutDir>
     <IntDir>$(OutDir)intermediate\$(ProjectName)\$(Platform)_$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <CustomBuildBeforeTargets>Build</CustomBuildBeforeTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)..\Build-Windows\$(Platform)_$(Configuration)\</OutDir>
     <IntDir>$(OutDir)intermediate\$(ProjectName)\$(Platform)_$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <CustomBuildBeforeTargets>Build</CustomBuildBeforeTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)..\Build-Windows\$(Platform)_$(Configuration)\</OutDir>
     <IntDir>$(OutDir)intermediate\$(ProjectName)\$(Platform)_$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <CustomBuildBeforeTargets>Build</CustomBuildBeforeTargets>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -109,6 +113,10 @@
       <AdditionalDependencies>libsdl2wrapper-$(DefaultPlatformToolset).lib;SDL2main.lib;SDL2.lib;SDL2_image.lib;libcul-$(DefaultPlatformToolset).lib;glew_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <CustomBuildStep>
       <Command>xcopy "$(ProjectDir)..\deps\SDL2Wrapper\Build-Windows\$(Platform)_$(Configuration)\*.dll" "$(TargetDir)" /y
 
 xcopy "$(ProjectDir)..\deps\SDL2Wrapper\Build-Windows\$(Platform)_$(Configuration)\*.pdb" "$(TargetDir)" /y
@@ -118,9 +126,9 @@ xcopy "$(ProjectDir)..\deps\glfw\Build-Windows\$(Platform)\*.dll" "$(TargetDir)"
 xcopy "$(ProjectDir)..\deps\glew\Build-Windows\$(Platform)\*.dll" "$(TargetDir)" /y
 
 xcopy "$(ProjectDir)..\deps\freeglut\Build-Windows\$(Platform)\*.dll" "$(TargetDir)" /y
-
 </Command>
-    </PreLinkEvent>
+      <Outputs>NonExistinngFile.SomeExtension</Outputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -142,6 +150,10 @@ xcopy "$(ProjectDir)..\deps\freeglut\Build-Windows\$(Platform)\*.dll" "$(TargetD
       <AdditionalDependencies>libsdl2wrapper-$(DefaultPlatformToolset).lib;SDL2main.lib;SDL2.lib;SDL2_image.lib;libcul-$(DefaultPlatformToolset).lib;glew_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <CustomBuildStep>
       <Command>xcopy "$(ProjectDir)..\deps\SDL2Wrapper\Build-Windows\$(Platform)_$(Configuration)\*.dll" "$(TargetDir)" /y
 
 xcopy "$(ProjectDir)..\deps\SDL2Wrapper\Build-Windows\$(Platform)_$(Configuration)\*.pdb" "$(TargetDir)" /y
@@ -151,9 +163,9 @@ xcopy "$(ProjectDir)..\deps\glfw\Build-Windows\$(Platform)\*.dll" "$(TargetDir)"
 xcopy "$(ProjectDir)..\deps\glew\Build-Windows\$(Platform)\*.dll" "$(TargetDir)" /y
 
 xcopy "$(ProjectDir)..\deps\freeglut\Build-Windows\$(Platform)\*.dll" "$(TargetDir)" /y
-
 </Command>
-    </PreLinkEvent>
+      <Outputs>NonExistinngFile.SomeExtension</Outputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -179,6 +191,10 @@ xcopy "$(ProjectDir)..\deps\freeglut\Build-Windows\$(Platform)\*.dll" "$(TargetD
       <AdditionalDependencies>libsdl2wrapper-$(DefaultPlatformToolset).lib;SDL2main.lib;SDL2.lib;SDL2_image.lib;libcul-$(DefaultPlatformToolset).lib;glew_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <CustomBuildStep>
       <Command>xcopy "$(ProjectDir)..\deps\SDL2Wrapper\Build-Windows\$(Platform)_$(Configuration)\*.dll" "$(TargetDir)" /y
 
 xcopy "$(ProjectDir)..\deps\SDL2Wrapper\Build-Windows\$(Platform)_$(Configuration)\*.pdb" "$(TargetDir)" /y
@@ -188,9 +204,9 @@ xcopy "$(ProjectDir)..\deps\glfw\Build-Windows\$(Platform)\*.dll" "$(TargetDir)"
 xcopy "$(ProjectDir)..\deps\glew\Build-Windows\$(Platform)\*.dll" "$(TargetDir)" /y
 
 xcopy "$(ProjectDir)..\deps\freeglut\Build-Windows\$(Platform)\*.dll" "$(TargetDir)" /y
-
 </Command>
-    </PreLinkEvent>
+      <Outputs>NonExistinngFile.SomeExtension</Outputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -216,6 +232,10 @@ xcopy "$(ProjectDir)..\deps\freeglut\Build-Windows\$(Platform)\*.dll" "$(TargetD
       <AdditionalDependencies>libsdl2wrapper-$(DefaultPlatformToolset).lib;SDL2main.lib;SDL2.lib;SDL2_image.lib;libcul-$(DefaultPlatformToolset).lib;glew_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <CustomBuildStep>
       <Command>xcopy "$(ProjectDir)..\deps\SDL2Wrapper\Build-Windows\$(Platform)_$(Configuration)\*.dll" "$(TargetDir)" /y
 
 xcopy "$(ProjectDir)..\deps\SDL2Wrapper\Build-Windows\$(Platform)_$(Configuration)\*.pdb" "$(TargetDir)" /y
@@ -225,9 +245,9 @@ xcopy "$(ProjectDir)..\deps\glfw\Build-Windows\$(Platform)\*.dll" "$(TargetDir)"
 xcopy "$(ProjectDir)..\deps\glew\Build-Windows\$(Platform)\*.dll" "$(TargetDir)" /y
 
 xcopy "$(ProjectDir)..\deps\freeglut\Build-Windows\$(Platform)\*.dll" "$(TargetDir)" /y
-
 </Command>
-    </PreLinkEvent>
+      <Outputs>NonExistinngFile.SomeExtension</Outputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="shaders\fragmentShader.frag" />

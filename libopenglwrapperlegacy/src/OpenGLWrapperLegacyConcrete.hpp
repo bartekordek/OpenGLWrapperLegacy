@@ -27,14 +27,16 @@ private:
     using CustomSteps = std::map<Cunt, std::function<void()>>;
     using LckBool = CUL::GUTILS::LckBool;
 
-    void start() override;
-    void signalStop() override;
-
     void mainLoop();
-    void initialize();
+    void initialize() override;
+    void beginRenderingLoop() override;
+    void endRenderingLoop() override;
+    void renderFrame() override;
+
     void setProjection();
     void clearFrame();
-    void renderFrame();
+    void clearTransformations();
+    void renderObjects();
     void customFrameSteps();
     void updateBuffers();
 
@@ -48,13 +50,16 @@ private:
     ProjectionType m_projectionType = ProjectionType::PERSPECTIVE;
     LckBool m_runMainLoop = true;
     LckBool m_clearEveryFrame = true;
+    LckBool m_clearTransformations = true;
     LckBool m_updateBuffers = true;
+    
     SDL2W::ISDL2Wrapper* m_sdl2w = nullptr;
     SDL2W::IWindow* m_currentWindow = nullptr;
     SDL_GLContext m_oglContext = nullptr;
     std::thread m_renderingLoopThread;
     CustomSteps m_customSteps;
     double m_fovAngle = 90.0;
+    unsigned m_afterFrameSleepMicroSeconds = 12800;
 
     // Removed.
 private:

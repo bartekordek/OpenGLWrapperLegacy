@@ -52,7 +52,7 @@ CUL_LIB_DEBUG := $(CUL_LIB)/Debug/libcul.so
 CUL_LIB_RELEASE := $(CUL_LIB)/Release/libcul.so
 
 # HEADERS
-HEADERS_INC := -I include
+HEADERS_INC := -I inc
 HEADERS_INC += -I src
 HEADERS_INC += -I $(CUL_INC)
 HEADERS_INC += -I $(SDL2W_INC)
@@ -67,8 +67,13 @@ IMP_LIB_DEBUG = $(OUTPUT_DIR_DEBUG)/$(IMP_LIB_NAME)
 IMP_LIB_RELEASE = $(OUTPUT_DIR_RELEASE)/$(IMP_LIB_NAME)
 
 IMPORT_GL_LIGBS := -lGLU -lGL -lglut -lGLEW
-IMPORT_LIBS_DEBUG := -pthread $(CUL_LIB_DEBUG) $(SDL2W_LIB_DEBUG) $(CUL_LIB_DEBUG) $(IMPORT_GL_LIGBS)
-IMPORT_LIBS_RELEASE := -pthread $(CUL_LIB_RELEASE) $(SDL2W_LIB_RELEASE) $(CUL_LIB_RELEASE) $(IMPORT_GL_LIGBS)
+IMPORT_LIBS_DEBUG := -pthread $(CUL_LIB_DEBUG) $(SDL2W_LIB_DEBUG) $(IMPORT_GL_LIGBS)
+IMPORT_LIBS_RELEASE := -pthread $(CUL_LIB_RELEASE) $(SDL2W_LIB_RELEASE) $(IMPORT_GL_LIGBS)
+
+HEADER_FILES := $(wildcard inc/*.hpp)
+HEADER_FILES += $(wildcard inc/*/*.hpp)
+HEADER_FILES += $(wildcard src/*.hpp)
+HEADER_FILES += $(wildcard src/*/*.hpp)
 
 CPP_FILES := $(wildcard src/*.cpp)
 CPP_FILES += $(wildcard src/*/*.cpp)
@@ -79,30 +84,21 @@ OBJ_DEBUG_FILES := $(addprefix $(OBJ_DEBUG_DIR),$(CPP_FILES:.cpp=.o))
 OBJ_RELEASE_DIR := obj/release/
 OBJ_RELEASE_FILES := $(addprefix $(OBJ_RELEASE_DIR),$(CPP_FILES:.cpp=.o))
 
-debug: $(CUL_LIB_DEBUG) $(SDL2W_LIB_DEBUG)
+debug:
+	$(MAKE) -C $(SDL2W_LIB_HOME) debug
+	@echo "Creating Debug file..."
 	@make $(OUTPUT_DEBUG)
 
-release: $(CUL_LIB_RELEASE) $(SDL2W_LIB_RELEASE)
+release:
+	$(MAKE) -C $(SDL2W_LIB_HOME) release
 	@make $(OUTPUT_RELEASE)
 
-$(SDL2W_LIB_DEBUG):
-	@make -C $(SDL2W_LIB_HOME) debug
-
-$(SDL2W_LIB_RELEASE):
-	@make -C $(SDL2W_LIB_HOME) release
-
-$(CUL_LIB_DEBUG):
-	make -C $(CUL_HOME)/libcul debug
-
-$(CUL_LIB_RELEASE):
-	make -C $(CUL_HOME)/libcul release
-
-$(OUTPUT_DEBUG): $(OBJ_DEBUG_FILES)
+$(OUTPUT_DEBUG): $(OBJ_DEBUG_FILES) $(HEADER_FILES)
+	@echo "Header dependencies: $(HEADER_FILES)"
 	@mkdir -p $(dir $@)
-	@echo "HITLER"
 	$(CC_LINK) -o $@ $(OBJ_DEBUG_FILES) $(DEBUG_FLAGS) $(IMPORT_LIBS_DEBUG) $(IMPORT_FILES)
 
-$(OUTPUT_RELEASE): $(OBJ_RELEASE_FILES)
+$(OUTPUT_RELEASE): $(OBJ_RELEASE_FILES) $(HEADER_FILES)
 	@mkdir -p $(dir $@)
 	$(CC_LINK) -o $@ $(OBJ_RELEASE_FILES) $(RELEASE_FLAGS) $(IMPORT_LIBS_RELEASE) $(IMPORT_FILES)
 
@@ -124,8 +120,5 @@ clean:
 
 test:
 	@echo "All .o files: $(OBJ_DEBUG_FILES)"
+	@echo "All .hpp files: $(HEADER_FILES)"
 	@echo "All .cpp files: $(CPP_FILES)"
-	@echo "SDL2: $(HOME_SDL2_LINUX)/"
-
-help:
-	echo "If run first time, please run \"make first_run\" it will create necessary dirs."

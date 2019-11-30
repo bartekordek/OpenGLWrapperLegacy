@@ -2,7 +2,7 @@
 
 #include "libopenglwrapperlegacy/Import.hpp"
 #include "CUL/GenericUtils/SimpleAssert.hpp"
-#include "import_freeglut.hpp"
+#include "IMPORT_freeglut.hpp"
 
 NAMESPACE_BEGIN( OGLWL )
 

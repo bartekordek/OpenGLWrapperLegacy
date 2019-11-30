@@ -36,3 +36,4 @@ runTests
 runDir/*.dll
 Build-Linux/*
 Build-Windows/*
+runDir

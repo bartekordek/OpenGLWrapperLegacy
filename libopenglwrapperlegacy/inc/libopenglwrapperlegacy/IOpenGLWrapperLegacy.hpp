@@ -19,8 +19,11 @@ public:
     IOpenGLwrapperLegacy();
     virtual ~IOpenGLwrapperLegacy();
 
-    virtual void start() = 0;
-    virtual void signalStop() = 0;
+    virtual void initialize() = 0;
+
+    virtual void beginRenderingLoop() = 0;
+    virtual void endRenderingLoop() = 0;
+    virtual void renderFrame() = 0;
 
     virtual void addCustomFrameStep( const std::function<void()>& callback, Cunt id ) = 0;
     virtual void removeCustomFrameStep( Cunt id ) = 0;

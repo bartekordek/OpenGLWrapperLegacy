@@ -7,7 +7,7 @@
 #include "CUL/Graphics/Pos2D.hpp"
 #include "CUL/Graphics/Size2D.hpp"
 #include "CUL/Math/Angle.hpp"
-#include "CUL/MyString.hpp"
+#include "CUL/String.hpp"
 
 #include "IMPORT_glew.hpp"
 
@@ -16,7 +16,7 @@ NAMESPACE_BEGIN( OGLWL )
 using CDouble = const double;
 using Angle = CUL::Math::Angle;
 using Cunt = const unsigned int;
-using String = CUL::MyString;
+using String = CUL::String;
 
 class UTILS
 {

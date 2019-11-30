@@ -115,8 +115,8 @@
       </Command>
     </PostBuildEvent>
     <PreLinkEvent>
-      <Command>xcopy "$(TargetDir)*.dll" /y "$(LocalDebuggerWorkingDirectory)"
-xcopy "$(TargetDir)*.pdb" /y "$(LocalDebuggerWorkingDirectory)"</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -145,8 +145,8 @@ xcopy "$(TargetDir)*.pdb" /y "$(LocalDebuggerWorkingDirectory)"</Command>
       </Command>
     </PostBuildEvent>
     <PreLinkEvent>
-      <Command>xcopy "$(TargetDir)*.dll" /y "$(LocalDebuggerWorkingDirectory)"
-xcopy "$(TargetDir)*.pdb" /y "$(LocalDebuggerWorkingDirectory)"</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -178,8 +178,8 @@ xcopy "$(TargetDir)*.pdb" /y "$(LocalDebuggerWorkingDirectory)"</Command>
       </Command>
     </PostBuildEvent>
     <PreLinkEvent>
-      <Command>xcopy "$(TargetDir)*.dll" /y "$(LocalDebuggerWorkingDirectory)"
-xcopy "$(TargetDir)*.pdb" /y "$(LocalDebuggerWorkingDirectory)"</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -211,8 +211,8 @@ xcopy "$(TargetDir)*.pdb" /y "$(LocalDebuggerWorkingDirectory)"</Command>
       </Command>
     </PostBuildEvent>
     <PreLinkEvent>
-      <Command>xcopy "$(TargetDir)*.dll" /y "$(LocalDebuggerWorkingDirectory)"
-xcopy "$(TargetDir)*.pdb" /y "$(LocalDebuggerWorkingDirectory)"</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

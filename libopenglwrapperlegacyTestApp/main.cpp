@@ -16,14 +16,13 @@ using ShaderFile = CUL::GUTILS::DumbPtr<CUL::FS::IFile>;
 template <typename TYPE> using DumbPtr = CUL::GUTILS::DumbPtr<TYPE>;
 using FF = CUL::FS::FileFactory;
 using Rect = CUL::Graphics::Rect3Di;
-using String = CUL::MyString;
+using String = CUL::String;
 using Vector3Di = SDL2W::Vector3Di;
 using Vector3Du = SDL2W::Vector3Du;
 using WindowsSize = SDL2W::WindowSize;
 
 OGLWL::IOpenGLwrapperLegacy* g_oglw = nullptr;
-SDL2W::ISDL2Wrapper* g_sdlw = nullptr;;
-OGLWL::MatrixStack matrixStack;
+SDL2W::ISDL2Wrapper* g_sdlw = nullptr;
 Color red( 1.0f, 0.0f, 0.0f, 1.0f );
 Color blue( 0.0f, 0.0f, 1.0f, 1.0f );
 Color black;
@@ -64,22 +63,16 @@ int main( int argc, char** argv )
     wd.pos.setXYZ( 256, 256, 0 );
     wd.name = "Test";
 
-    SDLWrap sdlWrap = SDL2W::createSDL2Wrapper( wd );
+    SDLWrap sdlWrap = SDL2W::createSDL2Wrapper();
+    sdlWrap->init( wd );
     g_sdlw = sdlWrap;
     sdlWrap->registerWindowEventCallback( onWindowEvent );
     sdlWrap->registerKeyboardEventCallback( onKeyBoardEvent );
 
     g_oglw = OGLWL::createWrapper( sdlWrap );
 
-    auto& size = sdlWrap->getMainWindow()->getSize();
-    auto w = static_cast<GLsizei>( size.getWidth() );
-    auto h = static_cast<GLsizei>( size.getHeight() );
-    Rect rect;
-    rect.width = w;
-    rect.height = h;
-
     g_oglw->addCustomFrameStep( frame, 0 );
-    g_oglw->start();
+    g_oglw->beginRenderingLoop();
     sdlWrap->runEventLoop();
 
     return 0;
@@ -92,14 +85,17 @@ void frame()
 
 void renderScene()
 {
-    glPushMatrix();
+    //glPushMatrix();
+        const GLfloat quadZ = -2.0f;
+        glTranslatef( 2.0f, 0.0f, quadZ );
         glRotatef( angle, 0.0f, 0.0f, 1.0f );
-        glTranslatef( 2.0f, 0.0f, 4.0f );
         drawQuad( red );
         glRotatef( 180.0f, 0.0f, 0.0f, 1.0f );
         drawTriangle( blue );
-    glPopMatrix();
-    angle += 0.1f;
+    //glPopMatrix();
+
+    //drawTriangle( blue );
+    angle += 0.2f;
 }
 
 void drawTriangle( const Color& color )
@@ -141,7 +137,7 @@ void onWindowEvent( const WinEventType type )
 
 void closeApp()
 {
-    g_oglw->signalStop();
+    g_oglw->endRenderingLoop();
     delete g_oglw;
     g_oglw = nullptr;
     g_sdlw->stopEventLoop();
